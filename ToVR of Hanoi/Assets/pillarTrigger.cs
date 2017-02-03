@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class pillarTrigger : MonoBehaviour {
+
+	public string tag;
+
 	void OnTriggerEnter(Collider other) {
-		// Tag 
-		Destroy (other.gameObject);
+		// Tag other object (a disk) with the pillar
+		other.gameObject.tag = tag;
+		Debug.Log (tag);
 	}
 }
