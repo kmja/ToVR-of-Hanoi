@@ -1,0 +1,17 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class diskController : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// For testing purposes, lock disk position in z-axis so they're always on top of pillars
+	void Update () {
+		if (transform.position.z < 1f || transform.position.z > 2f) {
+			transform.position = new Vector3 (transform.position.x, transform.position.y, 1.75f);
+		}
+	}
+}
