@@ -1,0 +1,108 @@
+fileFormatVersion: 2
+guid: d0e280fbdd28367479f34f2bf1fa5d07
+timeCreated: 1486565775
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Circle006
+    100002: D580_006
+    100004: D580_007
+    100006: //RootNode
+    100008: Door_box_0
+    100010: Door_Polot
+    100012: Line014
+    100014: Loft005
+    400000: Circle006
+    400002: D580_006
+    400004: D580_007
+    400006: //RootNode
+    400008: Door_box_0
+    400010: Door_Polot
+    400012: Line014
+    400014: Loft005
+    2300000: Circle006
+    2300002: D580_006
+    2300004: D580_007
+    2300006: Door_box_0
+    2300008: Door_Polot
+    2300010: Line014
+    2300012: Loft005
+    3300000: Circle006
+    3300002: D580_006
+    3300004: D580_007
+    3300006: Door_box_0
+    3300008: Door_Polot
+    3300010: Line014
+    3300012: Loft005
+    4300000: Loft005
+    4300002: Circle006
+    4300004: Line014
+    4300006: Door_Polot
+    4300008: D580_007
+    4300010: D580_006
+    4300012: Door_box_0
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
