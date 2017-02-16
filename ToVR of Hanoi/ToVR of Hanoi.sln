@@ -1,9 +1,9 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{C722572B-B6FA-FFC1-3D19-A266B16631C8}") = "ToVR of Hanoi", "Assembly-CSharp.csproj", "{BD189A86-FBE7-D59F-3FC8-0387E5845C2E}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToVR of Hanoi", "Assembly-CSharp.csproj", "{BD189A86-FBE7-D59F-3FC8-0387E5845C2E}"
 EndProject
-Project("{C722572B-B6FA-FFC1-3D19-A266B16631C8}") = "ToVR of Hanoi", "Assembly-CSharp-Editor.csproj", "{23B51BFA-14A5-AB3B-49DC-88E0566E6A48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToVR of Hanoi", "Assembly-CSharp-Editor.csproj", "{23B51BFA-14A5-AB3B-49DC-88E0566E6A48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
