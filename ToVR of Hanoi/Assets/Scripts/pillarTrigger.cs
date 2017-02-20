@@ -8,31 +8,32 @@ public class pillarTrigger : MonoBehaviour {
 	private bool legalMove;
 
 	void OnTriggerEnter(Collider other) {
-		//Instantiate legalMove bool
-		legalMove = true;
-		// Instantiate parent, which all operations will be made on
-		disk = other.transform.parent.gameObject;
-		// Check if the move is valid. If not, shoot the disk upwards
-		for (int i = System.Convert.ToInt32 (disk.name) - 1; i > 0; i--) {
-			// Check if the lower numbered disks have the same tag (= they are already on the pillar)
-			if (GameObject.Find (i.ToString()).tag == tag) {
-				disk.GetComponent<Rigidbody> ().velocity = new Vector3(0f,10f,0f);
-				Debug.Log ("break! " + disk.name);
-				legalMove = false;
-				break;
+		// Check if trigger is the child of a numbered gameobject (= a disk)
+		int name;
+		if (int.TryParse(other.transform.parent.name, out name)) {
+			//Instantiate legalMove bool
+			legalMove = true;
+			// Instantiate parent, which all operations will be made on
+			disk = other.transform.parent.gameObject;
+			// Check if the move is valid. If not, shoot the disk upwards
+			for (int i = System.Convert.ToInt32 (disk.name) - 1; i > 0; i--) {
+				// Check if the lower numbered disks have the same tag (= they are already on the pillar)
+				if (GameObject.Find (i.ToString()).tag == tag) {
+					disk.GetComponent<Rigidbody> ().velocity = new Vector3(0f,10f,0f);
+					Debug.Log ("break! " + disk.name);
+					legalMove = false;
+					break;
+				}
 			}
-
-		}
-		// Tag disk if it's not already tagged and the move is legal
-		if(legalMove){
-			Debug.Log (legalMove);
-			if (disk.tag != tag) {
-				disk.tag = tag;
-			} else {
-				disk.tag = null;
+			// Tag disk if it's not already tagged and the move is legal
+			if(legalMove){
+				if (disk.tag != tag) {
+					disk.tag = tag;
+				} else {
+					disk.tag = null;
+				}
 			}
+		
 		}
-
-
 	}
 }
