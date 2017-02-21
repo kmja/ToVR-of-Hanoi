@@ -5,7 +5,7 @@
       <File FileName="Assets\Scripts\pillarTrigger.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\controllerManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\leftControllerManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\rightControllerManager.cs" Line="60" Column="41" />
+      <File FileName="Assets\Scripts\rightControllerManager.cs" Line="59" Column="78" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

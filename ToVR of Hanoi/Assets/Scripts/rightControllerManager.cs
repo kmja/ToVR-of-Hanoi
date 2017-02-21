@@ -57,7 +57,6 @@ public class rightControllerManager : MonoBehaviour {
 			float step = speed * Time.deltaTime;
 			disk.gameObject.transform.position = Vector3.MoveTowards (diskPos, diskPos + deltaPos, step);
 			disk.gameObject.transform.rotation = Quaternion.Euler(diskRot + deltaRot);
-			disk.gameObject.transform.RotateAround
 		}
 		// Log previous positions of controllers, and while trigger is held, mirror disk movement to controller movement. Don't set disk position to controller position. Instead, track movements of controller while trigger is being held and move the disk accordingly.
 		lastPos = transform.position;
