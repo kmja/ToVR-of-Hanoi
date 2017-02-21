@@ -1,42 +1,84 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class controllerManager : MonoBehaviour {
 
-	private GameObject left;
-	private GameObject right;
-	private Vector3 lastPos;
+	private Vector3[] lastPosList = new Vector3[10];
 	private Vector3 lastRot;
-	private float step = 0.05f;
+	private Vector3 deltaPos;
+	private Vector3 deltaRot;
+	public float followSpeed = 100f;
+	public float throwForce = 100f;
+	private GameObject disk;
+	private bool grabbed;
 
-	void Start() {
-		left = GameObject.Find ("Controller (left)");
-		right = GameObject.Find ("Controller (right)");
-	}
-
-	void Update() {
-		// Log previous positions of controllers, and while trigger is held, mirror disk movement to controller movement. Don't set disk position to controller position. Instead, track movements of controller while trigger is being held and move the disk accordingly.
-		lastPos = transform.position;
-		lastRot = transform.rotation.eulerAngles;
-	}
+	public string controller;
 
 	void OnTriggerStay(Collider other) {
 		// Lock position of disk to controller while their colliders are touching and the trigger is pressed
-		if (other.transform.parent.name == "Disks") {
-			if (Input.GetButton ("Left Trigger")) {
-				other.gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
-				//other.gameObject.transform.position = left.transform.position;
-				other.gameObject.transform.position = Vector3.MoveTowards (other.gameObject.transform.position, GameObject.Find ("Controller (left)").transform.position, step);
-				other.gameObject.transform.rotation = left.transform.rotation;
-			} else if (Input.GetButton ("Right Trigger")) {
-				other.gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
-				//other.gameObject.transform.position = right.transform.position;
-				other.gameObject.transform.position = Vector3.MoveTowards (other.gameObject.transform.position, GameObject.Find ("Controller (right)").transform.position, step);
-				other.gameObject.transform.rotation = right.transform.rotation;
+		if (other.transform.parent != null && other.transform.parent.name == "Disks2.0") {
+			// On trigger down, save initial offset between controller and disk
+			if (Input.GetButtonDown(controller)) {
+				if (!grabbed) {
+					// Set "disk" to current disk
+					disk = other.gameObject;
+					// Turn off disk physics and set "grabbed"
+					grabbed = true;
+					setDiskPhysics(false);
+				}
+			}
+
+		}
+	}
+
+	void Update() {
+		// While disk is grabbed, reset velocity
+		if(grabbed){
+			disk.gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+		}
+		// On trigger up, reset variables and disk physics
+		if(Input.GetButtonUp(controller)){
+			if (grabbed) {
+				// Turn on disk physics and reset "grabbed"
+				grabbed = false;
+				setDiskPhysics(true);
+				// Push disk in the direction of last controller movement
+				disk.gameObject.GetComponent<Rigidbody>().AddForce(throwForce * (lastPosList[0] - lastPosList[9]));
+				// Clear "disk" variable
+				disk = null;
 			}
 		}
+		// While trigger down, move disk according to controller movement
+		if (Input.GetButton (controller) && grabbed) {
+			// Get disk position and rotation
+			Vector3 diskPos = disk.transform.position;
+			Vector3 diskRot = disk.transform.rotation.eulerAngles;
+			// Calculate changes in controller position and rotation
+			deltaPos = transform.position - lastPosList[0];
+			deltaRot = transform.rotation.eulerAngles - lastRot;
+			// Apply changes to disk position and rotation
+			float step = followSpeed * Time.deltaTime;
+			disk.gameObject.transform.position = Vector3.MoveTowards (diskPos, diskPos + deltaPos, step);
+			//disk.gameObject.transform.Rotate(new Vector3(deltaRot.x, diskRot.y, diskRot.z));
+			disk.gameObject.transform.Rotate(deltaRot);
+		}
+		// Log previous positions and rotation of controller
+		lastPosList [0] = transform.position;
+		for (int i = 9; i > 0; i--) {
+			lastPosList [i] = lastPosList [i - 1];
+		}
+		lastRot = transform.rotation.eulerAngles;
 
 	}
 
+	void setDiskPhysics(bool on){
+		if (on) {
+			disk.gameObject.GetComponent<Rigidbody> ().freezeRotation = false;
+			disk.gameObject.GetComponent<Rigidbody> ().useGravity = true;
+		} else {
+			disk.gameObject.GetComponent<Rigidbody> ().freezeRotation = true;
+			disk.gameObject.GetComponent<Rigidbody> ().useGravity = false;
+		}
+	}
 }
-

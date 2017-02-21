@@ -30,7 +30,7 @@ public class pillarTrigger : MonoBehaviour {
 				if (disk.tag != tag) {
 					disk.tag = tag;
 				} else {
-					disk.tag = null;
+					disk.tag = "";
 				}
 			}
 		
