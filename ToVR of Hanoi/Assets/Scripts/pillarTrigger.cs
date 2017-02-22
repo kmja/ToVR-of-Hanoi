@@ -7,6 +7,7 @@ public class pillarTrigger : MonoBehaviour {
 	private GameObject disk;
 	private bool legalMove;
 
+	// On trigger enter, check if move is legal. If so, tag disk with pillar tag
 	void OnTriggerEnter(Collider other) {
 		// Check if trigger is the child of a numbered gameobject (= a disk)
 		int name;
@@ -20,20 +21,26 @@ public class pillarTrigger : MonoBehaviour {
 				// Check if the lower numbered disks have the same tag (= they are already on the pillar)
 				if (GameObject.Find (i.ToString()).tag == tag) {
 					disk.GetComponent<Rigidbody> ().velocity = new Vector3(0f,10f,0f);
-					Debug.Log ("break! " + disk.name);
+					Debug.Log ("break on disk: " + disk.name);
 					legalMove = false;
 					break;
 				}
 			}
 			// Tag disk if it's not already tagged and the move is legal
 			if(legalMove){
-				if (disk.tag != tag) {
-					disk.tag = tag;
-				} else {
-					disk.tag = "";
-				}
+				disk.tag = tag;
 			}
-		
+		}
+	}
+
+	// On trigger exit, remove tag from disk
+	void OnTriggerExit(Collider other) {
+		// Check if trigger is the child of a numbered gameobject (= a disk)
+		int name;
+		if (int.TryParse(other.transform.parent.name, out name)) {
+			// Instantiate disk object and remove tag
+			disk = other.transform.parent.gameObject;
+			disk.tag = "Untagged";
 		}
 	}
 }

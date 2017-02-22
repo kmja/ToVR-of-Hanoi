@@ -13,7 +13,7 @@ public class edgeTrigger : MonoBehaviour {
 			Vector3 target = GameObject.Find("Middle").transform.position;
 			float randRangeMin = -5f;
 			float randRangeMax = 5f;
-			other.gameObject.GetComponent<Rigidbody> ().MovePosition (new Vector3(Random.Range(randRangeMin, randRangeMax), 10f, Random.Range(randRangeMin, randRangeMax)));
+			other.transform.parent.gameObject.GetComponent<Rigidbody> ().MovePosition (new Vector3(Random.Range(randRangeMin, randRangeMax), 10f, Random.Range(randRangeMin, randRangeMax)));
 		}
 	}
 }
