@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// PART OF CHILD'S PLAY BY RICKARD
 public class diskTrigger : MonoBehaviour {
 
 	private GameObject disk;
