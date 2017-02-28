@@ -10,6 +10,7 @@ public class controllerManager : MonoBehaviour {
 	public float moveSpeedPos = 100f;
 	public float moveSpeedRot = 1000f;
 	public float throwForce = 4000f;
+	public float maxDistance = 1f;
 	private GameObject disk;
 	private bool grabbed;
 
@@ -37,32 +38,35 @@ public class controllerManager : MonoBehaviour {
 		// While disk is grabbed, reset velocity
 		if(grabbed){
 			disk.gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
-		}
-		// On trigger up, reset variables and disk physics
-		if(Input.GetButtonUp(controller)){
-			if (grabbed) {
+
+			// If distance between controller and disk is too big, drop it like it's hot
+			if(Mathf.Abs((transform.position - disk.transform.position).magnitude) > maxDistance) {
+				grabbed = false;
+				setDiskPhysics (true);
+			}
+			// On trigger up, reset variables and disk physics
+			if (Input.GetButtonUp (controller)) {
 				// Turn on disk physics and reset "grabbed"
 				grabbed = false;
-				setDiskPhysics(true);
+				setDiskPhysics (true);
 				// Push disk in the direction of last controller movement
-				disk.gameObject.GetComponent<Rigidbody>().AddForce(throwForce * (lastPosList[0] - lastPosList[9]));
+				disk.gameObject.GetComponent<Rigidbody> ().AddForce (throwForce * (lastPosList [0] - lastPosList [9]));
 				// Give it angular momentum in the same way
-				disk.gameObject.GetComponent<Rigidbody>().angularVelocity = (lastRotList[0] - lastRotList[5]).normalized * 1f;
+				disk.gameObject.GetComponent<Rigidbody> ().angularVelocity = (lastRotList [0] - lastRotList [5]).normalized * 1f;
 				// Clear "disk" variable
 				disk = null;
-			}
-		}
-		// While trigger down, move disk according to controller movement
-		if (Input.GetButton (controller) && grabbed) {
-			// Get disk position
-			Vector3 diskPos = disk.transform.position;
-			// Calculate changes in controller position
-			Vector3 deltaPos = transform.position - lastPosList[0];
-			// Apply changes to disk position and rotation
-			float stepPos = moveSpeedPos * Time.deltaTime;
-			disk.gameObject.transform.position = Vector3.MoveTowards (diskPos, diskPos + deltaPos, stepPos);
-			float stepRot = moveSpeedRot * Time.deltaTime;
-			disk.transform.rotation = Quaternion.RotateTowards(disk.transform.rotation, transform.rotation, stepRot);
+			} else if (Input.GetButton (controller)) {
+					// While trigger down, move disk according to controller movement
+					// Get disk position
+					Vector3 diskPos = disk.transform.position;
+					// Calculate changes in controller position
+					Vector3 deltaPos = transform.position - lastPosList[0];
+					// Apply changes to disk position and rotation
+					float stepPos = moveSpeedPos * Time.deltaTime;
+					disk.gameObject.transform.position = Vector3.MoveTowards (diskPos, diskPos + deltaPos, stepPos);
+					float stepRot = moveSpeedRot * Time.deltaTime;
+					disk.transform.rotation = Quaternion.RotateTowards(disk.transform.rotation, transform.rotation, stepRot);
+				}
 		}
 		// Log previous positions and rotation of controller
 		lastPosList [0] = transform.position;
