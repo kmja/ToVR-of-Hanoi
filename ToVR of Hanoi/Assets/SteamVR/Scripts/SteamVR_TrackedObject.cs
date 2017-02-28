@@ -33,6 +33,10 @@ public class SteamVR_TrackedObject : MonoBehaviour
 	public EIndex index;
 	public Transform origin; // if not set, relative to parent
     public bool isValid = false;
+	// NEW ***
+	public float breakPoint = 0.3f;
+	public float powFactor = 2f;
+	// END NEW ***
 
 	private void OnNewPoses(TrackedDevicePose_t[] poses)
 	{
@@ -62,7 +66,18 @@ public class SteamVR_TrackedObject : MonoBehaviour
 		}
 		else
 		{
-			transform.localPosition = pose.pos;
+			//transform.localPosition = pose.pos; //ORIGINAL
+			// NEW *****
+			// Within a certain distance, controller behaves as normal. Beyond that distance, it exponentially gains more relative movement
+			Vector3 chest = GameObject.Find("Camera (eye)").transform.localPosition;
+			Vector3 chestToController = pose.pos - origin;
+			if (chestToController.magnitude < breakPoint) {
+				transform.localPosition = pose.pos;
+			} else {
+				// Formula for changing CD ratio: when the distance between controller and chest passes the breakpoint, the distance from chest to controller beyond the breakpoint is raised to the power of powFactor 
+				transform.localPosition = GameObject.Find ("Camera (eye)").transform.localPosition + chestToController * Mathf.Pow(1f + chestToController.magnitude - breakPoint, powFactor);
+			}
+			// END NEW *****
 			transform.localRotation = pose.rot;
 		}
 	}
