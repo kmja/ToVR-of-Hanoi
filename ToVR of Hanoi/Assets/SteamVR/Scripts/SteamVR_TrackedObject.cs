@@ -69,8 +69,8 @@ public class SteamVR_TrackedObject : MonoBehaviour
 			//transform.localPosition = pose.pos; //ORIGINAL
 			// NEW *****
 			// Within a certain distance, controller behaves as normal. Beyond that distance, it exponentially gains more relative movement
-			Vector3 chest = GameObject.Find("Camera (eye)").transform.localPosition;
-			Vector3 chestToController = pose.pos - origin;
+			Vector3 chest = GameObject.Find("Camera (eye)").transform.localPosition; // Approximate position of chest based on head position
+			Vector3 chestToController = pose.pos - chest;
 			if (chestToController.magnitude < breakPoint) {
 				transform.localPosition = pose.pos;
 			} else {

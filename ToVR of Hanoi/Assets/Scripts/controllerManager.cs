@@ -4,17 +4,36 @@ using UnityEngine;
 
 public class controllerManager : MonoBehaviour {
 
+	private SteamVR_TrackedObject trackedObject;
+	private SteamVR_Controller.Device device;
 	private Vector3[] lastPosList = new Vector3[10];
 	private Vector3[] lastRotList = new Vector3[10];
 	private Vector3 deltaRot;
 	public float moveSpeedPos = 100f;
 	public float moveSpeedRot = 1000f;
-	public float throwForce = 4000f;
-	public float maxDistance = 1f;
+	public float throwForce = 5000f;
+	public float maxDistance = 2f;
+	public float vibrationDistance = 1.25f;
 	private GameObject disk;
 	private bool grabbed;
+	private Vector3 offsetPos;
+	public Material defaultMaterial;
+	public Material glowMaterial;
 
 	public string controller;
+
+	void Start() {
+		trackedObject = GetComponent<SteamVR_TrackedObject> ();
+	}
+
+	void OnTriggerEnter(Collider other) {
+		// On trigger enter, highlight disk that will be grabbed if trigger pressed
+		if (other.transform.parent != null && other.transform.parent.name == "Disks") {
+			other.gameObject.transform.GetChild(0).GetComponent<Renderer> ().material = glowMaterial;
+			// Trigger short haptic pulse
+			device.TriggerHapticPulse(500);
+		}
+	}
 
 	void OnTriggerStay(Collider other) {
 		// Lock position of disk to controller while their colliders are touching and the trigger is pressed
@@ -27,20 +46,39 @@ public class controllerManager : MonoBehaviour {
 					// Turn off disk physics and set "grabbed"
 					grabbed = true;
 					setDiskPhysics(false);
+					// Set initial offset between controller and disk
+					//offsetPos = transform.position - disk.transform.position;
 				}
 			}
 
 		}
 	}
 
+	void OnTriggerExit(Collider other) {
+		// On trigger exit and if !grabbed, remove glow material
+		if (other.transform.parent != null && other.transform.parent.name == "Disks" && !grabbed) {
+			other.gameObject.transform.GetChild(0).GetComponent<Renderer> ().material = defaultMaterial;
+		}
+	}
+
 	// MY SNAP STORY
 	void Update() {
+		// Device identification
+		device = SteamVR_Controller.Input ((int)trackedObject.index);
 		// While disk is grabbed, reset velocity
 		if(grabbed){
 			disk.gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+			disk.gameObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
 
+			// If distance between controller and disk starts to get big, give increasing haptic feedback
+			float cont2disk = Mathf.Abs((transform.position - disk.transform.position).magnitude);
+			if (cont2disk > vibrationDistance && cont2disk < maxDistance) {
+				// Trigger increasing haptic pulses
+				ushort pulseStrength = System.Convert.ToUInt16(Mathf.Pow(cont2disk, 4) * 200); 
+				device.TriggerHapticPulse (pulseStrength);
+			}
 			// If distance between controller and disk is too big, drop it like it's hot
-			if(Mathf.Abs((transform.position - disk.transform.position).magnitude) > maxDistance) {
+			else if(cont2disk > maxDistance) {
 				grabbed = false;
 				setDiskPhysics (true);
 			}
