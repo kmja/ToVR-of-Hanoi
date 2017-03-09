@@ -20,7 +20,7 @@ public class pillarTrigger : MonoBehaviour {
 			for (int i = System.Convert.ToInt32 (disk.name) - 1; i > 0; i--) {
 				// Check if the lower numbered disks have the same tag (= they are already on the pillar)
 				if (GameObject.Find (i.ToString()).tag == tag) {
-					disk.GetComponent<Rigidbody> ().velocity = new Vector3(0f,20f,0f);
+					disk.GetComponent<Rigidbody> ().velocity = new Vector3(0f,5f,0f);
 					Debug.Log ("break on disk: " + disk.name);
 					legalMove = false;
 					break;

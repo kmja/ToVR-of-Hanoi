@@ -47,7 +47,7 @@ public class controllerManager : MonoBehaviour {
 					grabbed = true;
 					setDiskPhysics(false);
 					// Set initial offset between controller and disk
-					//offsetPos = transform.position - disk.transform.position;
+					offsetPos = transform.position - disk.transform.position;
 				}
 			}
 
@@ -71,14 +71,17 @@ public class controllerManager : MonoBehaviour {
 			disk.gameObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
 
 			// If distance between controller and disk starts to get big, give increasing haptic feedback
-			float cont2disk = Mathf.Abs((transform.position - disk.transform.position).magnitude);
+			float cont2disk = Mathf.Abs((transform.position - disk.transform.position - offsetPos).magnitude);
+			Debug.Log ("cont2disk: " + cont2disk);
+			Debug.Log ("offsetPos: " + offsetPos);
 			if (cont2disk > vibrationDistance && cont2disk < maxDistance) {
 				// Trigger increasing haptic pulses
-				ushort pulseStrength = System.Convert.ToUInt16(Mathf.Pow(cont2disk, 4) * 200); 
+				ushort pulseStrength = System.Convert.ToUInt16(Mathf.Pow(cont2disk, 2) * 3999); 
 				device.TriggerHapticPulse (pulseStrength);
 			}
 			// If distance between controller and disk is too big, drop it like it's hot
 			else if(cont2disk > maxDistance) {
+				Debug.Log ("Dropped!");
 				grabbed = false;
 				setDiskPhysics (true);
 			}

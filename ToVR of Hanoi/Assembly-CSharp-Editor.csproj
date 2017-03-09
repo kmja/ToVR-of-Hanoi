@@ -80,6 +80,7 @@
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Particles\MK_Particles-MulitplyDouble.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Particles\MK_Particles-Additive.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Normal\MK_Normal-DiffuseDetail.shader" />
+     <None Include="Assets\ViveGrip\Examples\Materials\Hand.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Lightmapped\MK_Lightmap-DiffuseBumped.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Toon\MK_Toon-Basic.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Cutout\MK_Cutout-DiffuseBumpSpec.shader" />
@@ -113,6 +114,7 @@
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Transparent\MK_Transparent-Glossy.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Cutout\MK_Cutout-Diffuse.shader" />
+     <None Include="Assets\ViveGrip\Materials\ViveGrip_TouchSphere.shader" />
      <None Include="Assets\SteamVR\Resources\SteamVR_ColorOut.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKGlowEffect\MKGlowRender.shader" />

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/scientific.unity
+- path: Assets/vivegripTest.unity
   isLoaded: 1
   isActive: 1
