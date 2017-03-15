@@ -35,7 +35,7 @@ public class SteamVR_TrackedObject : MonoBehaviour
     public bool isValid = false;
 	// NEW ***
 	public float breakPoint = 0.3f;
-	public float powFactor = 2f;
+	public float powFactor = 3f;
 	// END NEW ***
 
 	private void OnNewPoses(TrackedDevicePose_t[] poses)
@@ -76,6 +76,10 @@ public class SteamVR_TrackedObject : MonoBehaviour
 			} else {
 				// Formula for changing CD ratio: when the distance between controller and chest passes the breakpoint, the distance from chest to controller beyond the breakpoint is raised to the power of powFactor 
 				transform.localPosition = GameObject.Find ("Camera (eye)").transform.localPosition + chestToController * Mathf.Pow(1f + chestToController.magnitude - breakPoint, powFactor);
+				// Cap controller as to not clip through the floor
+				if(transform.localPosition.y < 0) {
+					transform.localPosition = new Vector3 (transform.localPosition.x, 0, transform.localPosition.z);
+				}
 			}
 			// END NEW *****
 			transform.localRotation = pose.rot;

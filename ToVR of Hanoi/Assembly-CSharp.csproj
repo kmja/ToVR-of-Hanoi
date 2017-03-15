@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\controllerManager.cs" />
+     <Compile Include="Assets\Scripts\diskController.cs" />
      <Compile Include="Assets\Scripts\diskTrigger.cs" />
      <Compile Include="Assets\Scripts\edgeTrigger.cs" />
      <Compile Include="Assets\Scripts\mouseDrag.cs" />

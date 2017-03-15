@@ -2,11 +2,13 @@ fileFormatVersion: 2
 guid: 903db5aa2044101498ecb19bf04a38e9
 labels:
 - Highlight
-timeCreated: 1462155272
+timeCreated: 1489592361
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - defaultMaterial: {fileID: 2100000, guid: ad21e82f457c3504096ee043cde92d6a, type: 2}
+  - highlightMaterial: {fileID: 2100000, guid: e3efa4275cbd62c46af5469c7c5c8eef, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
