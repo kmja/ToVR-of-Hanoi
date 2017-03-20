@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\calibrator.cs" />
      <Compile Include="Assets\Scripts\controllerManager.cs" />
      <Compile Include="Assets\Scripts\diskController.cs" />
      <Compile Include="Assets\Scripts\diskTrigger.cs" />
@@ -181,6 +182,7 @@
      <Compile Include="Assets\_MK\_MKGlow\_Demo\Code\MK_DemoControl.cs" />
      <Compile Include="Assets\_MK\_MKGlow\_Demo\Code\MK_RotateObject.cs" />
      <Compile Include="Assets\_MK\_MKGlow\_Internal\MKGlow.cs" />
+     <Compile Include="Assets\settings.cs" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Mobile\MK_Mobile-Diffuse.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Illumin\MK_Illumin-Glossy.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Cutout\MK_Cutout-Glossy.shader" />

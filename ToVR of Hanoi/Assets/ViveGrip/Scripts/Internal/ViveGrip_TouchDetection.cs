@@ -14,6 +14,11 @@ public class ViveGrip_TouchDetection : MonoBehaviour {
   }
 
   void OnTriggerExit(Collider other) {
+	// ADDED STUFF
+		if(other.gameObject.transform.parent && other.gameObject.transform.parent.name == "Disks") {
+			other.gameObject.transform.FindChild("Torus").GetComponent<Renderer> ().material = settings.defaultMat;
+		}
+
     collidingObjects.Remove(other.gameObject);
   }
 
@@ -27,7 +32,14 @@ public class ViveGrip_TouchDetection : MonoBehaviour {
         touchedObject = gameObject;
         closestDistance = distance;
       }
+		// ADDED
+	  gameObject.transform.FindChild ("Torus").GetComponent<Renderer> ().material = settings.defaultMat;
     }
+		// ADDED
+	if (touchedObject) {
+		touchedObject.transform.FindChild("Torus").GetComponent<Renderer> ().material = settings.glowMat;
+
+	}
     return touchedObject;
   }
 

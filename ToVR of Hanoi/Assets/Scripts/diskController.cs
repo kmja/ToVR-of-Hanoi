@@ -16,14 +16,13 @@ public class diskController : MonoBehaviour {
 //				GameObject.Find(i.ToString()).transform.FindChild("Torus").GetComponent<Renderer> ().material = defaultMaterial;
 //			}
 			// Set highlight material on triggered disk
-			transform.FindChild("Torus").GetComponent<Renderer> ().material = highlightMaterial;
+			//transform.FindChild("Torus").GetComponent<Renderer> ().material = highlightMaterial;
 		}
 	}
 
 	// If vive trigger pressed while OnTriggerStay: tag disk as "grabbed"
 	void OnTriggerStay(Collider other) {
 		if (other.name == "ViveGrip Touch Sphere" && Input.GetButtonDown("Left Trigger") || Input.GetButtonDown("Right Trigger")) {
-			Debug.Log (transform.name + " grabbed!");
 			transform.tag = "grabbed";
 		}
 	}
@@ -31,7 +30,7 @@ public class diskController : MonoBehaviour {
 	// On trigger exit: reset material
 	void OnTriggerExit(Collider other) {
 		if (other.name == "ViveGrip Touch Sphere") {
-			transform.FindChild("Torus").GetComponent<Renderer> ().material = defaultMaterial;
+			//transform.FindChild("Torus").GetComponent<Renderer> ().material = defaultMaterial;
 		}
 	}
 
