@@ -16,7 +16,7 @@ public class calibrator : MonoBehaviour {
 	void Update () {
 
 		// Test setOrigin
-		if(Input.GetButtonDown("o")) {
+		if(Input.GetButtonDown("c")) {
 			setOrigin ();
 		}
 		

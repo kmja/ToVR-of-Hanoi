@@ -183,6 +183,7 @@
      <Compile Include="Assets\_MK\_MKGlow\_Demo\Code\MK_RotateObject.cs" />
      <Compile Include="Assets\_MK\_MKGlow\_Internal\MKGlow.cs" />
      <Compile Include="Assets\settings.cs" />
+     <Compile Include="Assets\testLoader.cs" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Mobile\MK_Mobile-Diffuse.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Illumin\MK_Illumin-Glossy.shader" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Cutout\MK_Cutout-Glossy.shader" />
@@ -244,6 +245,7 @@
      <None Include="Assets\SteamVR\readme.txt" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Transparent\MK_Transparent-Glossy.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
+     <None Include="Assets\Wispy Sky\ReadMe.txt" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Cutout\MK_Cutout-Diffuse.shader" />
      <None Include="Assets\ViveGrip\Materials\ViveGrip_TouchSphere.shader" />
      <None Include="Assets\SteamVR\Resources\SteamVR_ColorOut.shader" />

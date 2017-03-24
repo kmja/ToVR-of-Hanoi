@@ -2,14 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs">
     <Files>
-      <File FileName="Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs" Line="81" Column="102" />
-      <File FileName="Assets\ViveGrip\Scripts\Internal\ViveGrip_TouchDetection.cs" Line="38" Column="11" />
-      <File FileName="Assets\Scripts\controllerManager.cs" Line="65" Column="113" />
-      <File FileName="Assets\Scripts\edgeTrigger.cs" Line="9" Column="1" />
-      <File FileName="Assets\ViveGrip\Scripts\Prefab\ViveGrip_GripPoint.cs" Line="29" Column="38" />
-      <File FileName="Assets\Scripts\diskController.cs" Line="33" Column="6" />
-      <File FileName="Assets\Scripts\calibrator.cs" Line="30" Column="38" />
-      <File FileName="Assets\settings.cs" Line="15" Column="34" />
+      <File FileName="Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs" Line="73" Column="50" />
+      <File FileName="Assets\ViveGrip\Scripts\Internal\ViveGrip_TouchDetection.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\controllerManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\edgeTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\ViveGrip\Scripts\Prefab\ViveGrip_GripPoint.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\diskController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\calibrator.cs" Line="19" Column="28" />
+      <File FileName="Assets\settings.cs" Line="22" Column="3" />
+      <File FileName="Assets\testLoader.cs" Line="15" Column="56" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

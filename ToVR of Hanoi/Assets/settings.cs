@@ -6,7 +6,7 @@ public class settings : MonoBehaviour {
 
 	public static Material defaultMat;
 	public static Material glowMat;
-
+	public float powFac = 1f;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +18,8 @@ public class settings : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+
+
 	}
 }

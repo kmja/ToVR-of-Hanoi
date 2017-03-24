@@ -113,6 +113,7 @@
      <None Include="Assets\SteamVR\readme.txt" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Transparent\MK_Transparent-Glossy.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
+     <None Include="Assets\Wispy Sky\ReadMe.txt" />
      <None Include="Assets\_MK\_MKGlow\_Shader\_MKBase\Cutout\MK_Cutout-Diffuse.shader" />
      <None Include="Assets\ViveGrip\Materials\ViveGrip_TouchSphere.shader" />
      <None Include="Assets\SteamVR\Resources\SteamVR_ColorOut.shader" />

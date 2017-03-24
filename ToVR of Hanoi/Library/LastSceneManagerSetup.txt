@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/vivegripTest.unity
+- path: Assets/Scenes/calibration.unity
   isLoaded: 1
   isActive: 1

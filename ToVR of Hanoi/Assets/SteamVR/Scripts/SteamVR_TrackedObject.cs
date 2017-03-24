@@ -5,6 +5,7 @@
 //=============================================================================
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Valve.VR;
 
 public class SteamVR_TrackedObject : MonoBehaviour
@@ -35,7 +36,7 @@ public class SteamVR_TrackedObject : MonoBehaviour
     public bool isValid = false;
 	// NEW ***
 	public float breakPoint = 0.3f;
-	public float powFactor = 3f;
+	public float powFac = 1f;
 	// END NEW ***
 
 	private void OnNewPoses(TrackedDevicePose_t[] poses)
@@ -66,22 +67,22 @@ public class SteamVR_TrackedObject : MonoBehaviour
 		}
 		else
 		{
-			//transform.localPosition = pose.pos; //ORIGINAL
-			// NEW *****
-			// Within a certain distance, controller behaves as normal. Beyond that distance, it exponentially gains more relative movement
-			Vector3 chest = GameObject.Find("Camera (eye)").transform.localPosition; // Approximate position of chest based on head position
-			Vector3 chestToController = pose.pos - chest;
-			if (chestToController.magnitude < breakPoint) {
-				transform.localPosition = pose.pos;
-			} else {
-				// Formula for changing CD ratio: when the distance between controller and chest passes the breakpoint, the distance from chest to controller beyond the breakpoint is raised to the power of powFactor 
-				transform.localPosition = GameObject.Find ("Camera (eye)").transform.localPosition + chestToController * Mathf.Pow(1f + chestToController.magnitude - breakPoint, powFactor);
-				// Cap controller as to not clip through the floor
-				if(transform.localPosition.y < 0) {
-					transform.localPosition = new Vector3 (transform.localPosition.x, 0, transform.localPosition.z);
+				// NEW *****
+				// Within a certain distance, controller behaves as normal. Beyond that distance, it exponentially gains more relative movement
+				Vector3 chest = GameObject.Find("Camera (eye)").transform.localPosition; // Approximated position of chest based on calibration with the controllers
+				Vector3 chestToController = pose.pos - chest;
+				if (chestToController.magnitude < breakPoint) {
+					transform.localPosition = pose.pos;
+				} else {
+					// Formula for changing CD ratio: when the distance between controller and chest passes the breakpoint, the distance from chest to controller beyond the breakpoint is raised to the power of powFactor 
+					transform.localPosition = GameObject.Find ("Camera (eye)").transform.localPosition + chestToController * Mathf.Pow(1f + chestToController.magnitude - breakPoint, powFac);
+					// Cap controller as to not clip through the floor
+					if(transform.localPosition.y < 0) {
+						transform.localPosition = new Vector3 (transform.localPosition.x, 0, transform.localPosition.z);
+					}
 				}
-			}
-			// END NEW *****
+				// END NEW *****
+
 			transform.localRotation = pose.rot;
 		}
 	}
@@ -115,6 +116,24 @@ public class SteamVR_TrackedObject : MonoBehaviour
 	{
 		if (System.Enum.IsDefined(typeof(EIndex), index))
 			this.index = (EIndex)index;
+	}
+
+	void Update() {
+		// When "1" key is pressed, set powFac to 1.5
+		if(Input.GetButtonDown("1")) {
+			powFac = 1.5f;
+			Debug.Log ("powFac is now: " + powFac);
+		}
+		// When "2" key is pressed, set powFac to 2
+		if(Input.GetButtonDown("2")) {
+			powFac = 2f;
+			Debug.Log ("powFac is now: " + powFac);
+		}
+		// When "3" key is pressed, set powFac to 1
+		if(Input.GetButtonDown("3")) {
+			powFac = 1f;
+			Debug.Log ("powFac is now: " + powFac);
+		}
 	}
 }
 
